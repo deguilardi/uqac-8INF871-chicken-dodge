@@ -9,10 +9,27 @@ Chicken dodge is a two players game competing against each other. Players red an
 * lives: 3 (each player)
 ![screenshot](/github_assets/screenshot.png)
 
+## What is this project for?
+This is an academic project that starts at 01/29/2020 and ends at 02/19/2020. The tasks are:
+### Exercise 2
+* Using the ChickenDodge project, implement a [sprite batching mechanism](https://github.com/mattdesl/lwjgl-basics/wiki/Sprite-Batching).
+
+* The top left corner of the screen displays the number of draw calls for each sprite. Since they share common characteristics, it should be possible to significantly reduce the number of calls (initial average is 150).
+* The recommended strategy is to move the creation, update, and rendering call from the display method of the SpriteComponent component to the display method of the LayerComponent component.
+
+### Exercise 3
+* Implement a visual effect with a fragment shader.
+* The camera code allows you to use the rendering in memory. We can thus support fullscreen special effects using shaders. A component applying a screen distortion was thus created, in order to be activated when the player is touched by a chicken. The desired result is available [here](https://youtu.be/tauWfnZkD-c).
+* Implement the shader fragment located in the client / data / shaders / deformation.frag file in order to be able to reproduce a similar effect. The different textures and parameters are correctly configured in the DeformationCompositorComponent component, in order to update the uniform variables in the shader.
+* The suggested algorithm is as follows:
+    - Calculate the intensity of the deformation to be applied over time, by looking for a value in the uIntensity texture, at the coordinates (uTime, 0.5). Scale this intensity to the uScale scale.
+    - Look for a deformation vector in the uDeformation texture, at the vTextureCoord coordinates offset by a value taken from uTime (for example, the sine of uTime). Modulate this deformation vector by the previous intensity.
+Find the final color in uSampler at the vTextureCoord coordinates, offset from the deformation vector.
+
 ## Install and run
 * Install [NodeJS](https://nodejs.org/en/download/).
 * Install typescript. You can install it by using the command `npm install -g typescript`.
-* Go to the directory client and run `npm install` and `tps`.
+* Go to the directory client and run `npm install` and `tsc`.
 * Go back to the root directory and run the "run script" adequate to your platform.
 * Now the game is accessible by your web browser (default address is localhost:8080).
 
