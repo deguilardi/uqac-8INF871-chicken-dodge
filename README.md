@@ -7,7 +7,7 @@ Chicken dodge is a two players game competing against each other. Players red an
 * Number of players: 2
 * Goal: Survive the chickens and collect diammonds
 * lives: 3 (each player)
-![screenshott](/github_assets/screenshot.png)
+![screenshot](/github_assets/screenshot.png)
 
 ## Install and run
 * Install [NodeJS](https://nodejs.org/en/download/).
