@@ -15,7 +15,6 @@ export class Batching{
         this.indexes = new Uint16Array(this.numberOfElements * 6)
         this.GL.bindBuffer(this.GL.ARRAY_BUFFER, vertexBuffer)
         this.GL.bindBuffer(this.GL.ELEMENT_ARRAY_BUFFER, indexBuffer)
-        
         for(let layerSprite of layerSprites){
             this.addSprite(layerSprite)
         }
@@ -23,13 +22,8 @@ export class Batching{
 
     public render(spriteSheet: SpriteSheetComponent){
         const vertexArray = Float32Array.from(this.vertexes)
-
         this.GL.bufferData(this.GL.ARRAY_BUFFER, vertexArray, this.GL.DYNAMIC_DRAW)
         this.GL.bufferData(this.GL.ELEMENT_ARRAY_BUFFER, this.indexes, this.GL.DYNAMIC_DRAW)
-
-        // console.log(this.vertexes)
-        // console.log(this.indexes)
-
         spriteSheet.bind()
         this.GL.drawElements(this.GL.TRIANGLES, this.numberOfElements * 6, this.GL.UNSIGNED_SHORT, 0)
         spriteSheet.unbind()

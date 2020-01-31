@@ -14,7 +14,7 @@ export class LayerComponent extends Component<object> implements IDisplayCompone
   // de la boucle de jeu.
   public display(dT: number) {
     const layerSprites = this.listSprites();
-    if (layerSprites.length === 0 || !layerSprites[0].spriteSheet) {
+    if (layerSprites.length === 0) {
       return;
     }
 
