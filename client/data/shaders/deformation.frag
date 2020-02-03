@@ -1,24 +1,50 @@
 precision mediump float;
 
-/* Rendu du jeu */
+/* Game rendering */
 uniform sampler2D uSampler;
 
-/* Texture de déformation en rouge et vert */
+/* Deformation texture in red and green */
 uniform sampler2D uDeformation;
 
-/* Texture pour contrôler l'intensité de la déformation */
+/* Texture to control the intensity of the deformation */
 uniform sampler2D uIntensity;
 
-/* Interval de temps multiplié par la vitesse depuis l'activation du composant */
+/* Time interval multiplied by speed since component activation */
 uniform float uTime;
 
-/* Échelle de la déformation */
+/* Deformation scale */
 uniform float uScale;
 
-/* Coordonnées UV du fragment */
+/* UV coordinates of the fragment */
 varying vec2 vTextureCoord;
 
 void main(void) {
-    gl_FragColor = texture2D(uSampler, vTextureCoord);
-    gl_FragColor.gb *= 0.5;
+
+    /*
+     * original
+     */
+
+    // gl_FragColor = texture2D(uSampler, vTextureCoord);
+    // gl_FragColor.gb *= 0.5;
+
+    /*
+     * exercise 3
+     */
+
+    // . Calculate the intensity of the deformation to be applied over time,
+    //   by looking for a value in the uIntensity texture, at the coordinates (uTime, 0.5).
+    //   Scale this intensity to the uScale scale.
+    vec2 intensityCoord = vec2( uTime, 0.5 );
+    vec2 intensityVector = texture2D( uIntensity, intensityCoord ).xy * uScale;
+
+    // . Look for a deformation vector in the uDeformation texture, at the vTextureCoord
+    //   coordinates offset by a value taken from uTime (for example, the sine of uTime).
+    //   Modulate this deformation vector by the previous intensity.
+    vec2 deformationCoord = vTextureCoord + sin( uTime );
+    vec2 deformationVector = texture2D( uDeformation, deformationCoord ).xy * intensityVector;
+
+    //   Find the final color in uSampler at the vTextureCoord coordinates,
+    //   offset from the deformation vector.
+    vec2 finalCoord = vTextureCoord + deformationVector;
+    gl_FragColor = texture2D( uSampler, finalCoord );
 }
