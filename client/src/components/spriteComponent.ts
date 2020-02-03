@@ -27,13 +27,13 @@ export class SpriteComponent extends Component<ISpriteComponentDesc> implements 
   public isAnimated!: boolean;
   public frameSkip!: number;
   public animationFrame!: number;
+  public vertexBuffer!: WebGLBuffer;
+  public indexBuffer!: WebGLBuffer;
+  public vertices!: Float32Array;
   private animWait!: number;
   private animWaitCounter!: number;
   private descr!: IFrameEntry;
   private spriteSize!: ISize;
-  private vertexBuffer!: WebGLBuffer;
-  private vertices!: Float32Array;
-  private indexBuffer!: WebGLBuffer;
 
   // ## Méthode *create*
   // Cette méthode est appelée pour configurer le composant avant
@@ -107,11 +107,11 @@ export class SpriteComponent extends Component<ISpriteComponentDesc> implements 
   // via la méthode *bind* de la feuille de sprite, sélectionne le
   // tableau de vertices et d'indices et fait l'appel de rendu.
   public display() {
-    GL.bindBuffer(GL.ARRAY_BUFFER, this.vertexBuffer);
-    GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
-    this.spriteSheet.bind();
-    GL.drawElements(GL.TRIANGLES, 6, GL.UNSIGNED_SHORT, 0);
-    this.spriteSheet.unbind();
+    // GL.bindBuffer(GL.ARRAY_BUFFER, this.vertexBuffer);
+    // GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, this.indexBuffer);
+    // this.spriteSheet.bind();
+    // GL.drawElements(GL.TRIANGLES, 6, GL.UNSIGNED_SHORT, 0);
+    // this.spriteSheet.unbind();
   }
 
   // ## Méthode *updateMesh*
