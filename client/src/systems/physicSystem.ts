@@ -40,24 +40,20 @@ export class PhysicSystem implements ISystem {
 
         // if elements intercect, they collide
         if (c1.area.intersectsWith(c2.area)) {
-          this.collide({c1: c1, c2: c2});
+          this.collide( c1, c2 );
         }
       }
     }
   }
 
-  private collide(collision: {c1: ColliderComponent, c2: ColliderComponent}){
-    if( collision.c1.canCollidewith( collision.c2 ) ){
-      // console.log("collision occured between {f:" + collision.c1.flag + ", m: " + collision.c1.mask + "} and {f:" + collision.c2.flag + ", m: " + collision.c2.mask + "}")
-      if( collision.c1.handler ){
-        collision.c1.handler.onCollision( collision.c2 )
+  private collide( element1: ColliderComponent, element2: ColliderComponent ){
+    if( element1.canCollideWith( element2) ){
+      if( element1.handler ){
+        element1.handler.onCollideWith( element2 )
       }
-      if( collision.c2.handler ){
-        collision.c2.handler.onCollision( collision.c1 )
+      if( element2.handler ){
+        element2.handler.onCollideWith( element1 )
       }
     }
-    // else{
-    //   console.log("collision ignored between {f:" + collision.c1.flag + ", m: " + collision.c1.mask + "} and {f:" + collision.c2.flag + ", m: " + collision.c2.mask + "}")
-    // }
   }
 }

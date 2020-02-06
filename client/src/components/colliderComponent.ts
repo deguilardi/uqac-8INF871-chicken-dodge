@@ -3,7 +3,7 @@ import { PositionComponent } from "./positionComponent";
 import { Rectangle } from "./rectangle";
 
 export interface ICollisionComponent extends IComponent {
-  onCollision(other: ColliderComponent): void;
+  onCollideWith( other: ColliderComponent ): void;
 }
 
 // # Classe *ColliderComponent*
@@ -46,8 +46,8 @@ export class ColliderComponent extends Component<IColliderComponentDesc> {
   }
 
   // implements flags and masks algorithm
-  public canCollidewith( other: ColliderComponent ): boolean{
-    return (this.mask & other.flag) !== 0;
+  public canCollideWith( other: ColliderComponent ): boolean{
+    return ( this.mask & other.flag ) !== 0;
   }
 
   // ## Propriété *area*
