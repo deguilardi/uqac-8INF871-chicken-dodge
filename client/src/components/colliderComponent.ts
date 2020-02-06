@@ -45,6 +45,11 @@ export class ColliderComponent extends Component<IColliderComponentDesc> {
     }
   }
 
+  // implements flags and masks algorithm
+  public canCollide( other: ColliderComponent ): boolean{
+    return (this.mask & other.flag) !== 0;
+  }
+
   // ## Propriété *area*
   // Cette fonction calcule l'aire courante de la zone de
   // collision, après avoir tenu compte des transformations
