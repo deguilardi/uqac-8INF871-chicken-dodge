@@ -47,7 +47,7 @@ export class PhysicSystem implements ISystem {
   }
 
   private collide(collision: {c1: ColliderComponent, c2: ColliderComponent}){
-    if( collision.c1.canCollide( collision.c2 ) ){
+    if( collision.c1.canCollidewith( collision.c2 ) ){
       // console.log("collision occured between {f:" + collision.c1.flag + ", m: " + collision.c1.mask + "} and {f:" + collision.c2.flag + ", m: " + collision.c2.mask + "}")
       if( collision.c1.handler ){
         collision.c1.handler.onCollision( collision.c2 )

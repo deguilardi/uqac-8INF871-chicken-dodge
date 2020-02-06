@@ -46,7 +46,7 @@ export class ColliderComponent extends Component<IColliderComponentDesc> {
   }
 
   // implements flags and masks algorithm
-  public canCollide( other: ColliderComponent ): boolean{
+  public canCollidewith( other: ColliderComponent ): boolean{
     return (this.mask & other.flag) !== 0;
   }
 
