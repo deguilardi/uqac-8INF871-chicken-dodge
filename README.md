@@ -30,7 +30,7 @@ Find the final color in uSampler at the vTextureCoord coordinates, offset from t
 * Improve the rudimentary collision management in the class ColliderComponent and PhysicSystem.
 * Implement the first stages of verification seen in class:
     - [Flags and masks](https://sites.google.com/site/arch1utep/home/course_outline/shifts_flags_masks_in_c).
-    - [Spatial subdivision](https://www.sciencedirect.com/topics/computer-science/spatial-subdivision) [using a quadtree](https://en.wikipedia.org/wiki/Quadtree) (can use an existent implementation).
+    - [Spatial subdivision](https://www.sciencedirect.com/topics/computer-science/spatial-subdivision) [using a quadtree](https://en.wikipedia.org/wiki/Quadtree) (can use an existent implementation). * I'm using (quadtree-lib)[https://www.npmjs.com/package/quadtree-lib]
     - [Bounding box](https://computersciencewiki.org/index.php/Bounding_boxes) aligned with axes (implicit, should already be functional).
 
 ## Install and run
