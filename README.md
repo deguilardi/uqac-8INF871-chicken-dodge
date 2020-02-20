@@ -26,6 +26,13 @@ This is an academic project that starts at 01/29/2020 and ends at 02/19/2020. Th
     - Look for a deformation vector in the uDeformation texture, at the vTextureCoord coordinates offset by a value taken from uTime (for example, the sine of uTime). Modulate this deformation vector by the previous intensity.
 Find the final color in uSampler at the vTextureCoord coordinates, offset from the deformation vector.
 
+### Exercise 4 ([Physics and collision](https://docs.google.com/document/d/1NQ30RlBDP7j3FNsHsdOdsOeGJtmYYTFsC9fAl5xwgFo/edit#heading=h.2ic8pigx7v6v))
+* Improve the rudimentary collision management in the class ColliderComponent and PhysicSystem.
+* Implement the first stages of verification seen in class:
+    - [Flags and masks](https://sites.google.com/site/arch1utep/home/course_outline/shifts_flags_masks_in_c).
+    - [Spatial subdivision](https://www.sciencedirect.com/topics/computer-science/spatial-subdivision) [using a quadtree](https://en.wikipedia.org/wiki/Quadtree) (can use an existent implementation). * I'm using (quadtree-lib)[https://www.npmjs.com/package/quadtree-lib]
+    - [Bounding box](https://computersciencewiki.org/index.php/Bounding_boxes) aligned with axes (implicit, should already be functional).
+
 ## Install and run
 * Install [NodeJS](https://nodejs.org/en/download/).
 * Install typescript. You can install it by using the command `npm install -g typescript`.

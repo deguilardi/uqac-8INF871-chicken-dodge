@@ -127,27 +127,32 @@ export class PlayerComponent extends Component<IPlayerComponentDesc> implements 
   // le score, si c'est un poulet, on le détruit si on est en
   // état d'attaque, sinon on soustrait le score et on désactive
   // ce poulet.
-  public onCollision(otherCollider: ColliderComponent) {
-    const obj = otherCollider.owner;
-    const rupee = obj.getComponent<RupeeComponent>("Rupee");
-    const heart = obj.getComponent<HeartComponent>("Heart");
-    const chicken = obj.getComponent<ChickenComponent>("Chicken");
+  public onCollideWith( other: ColliderComponent ){
+    const obj = other.owner
 
-    if (rupee) {
-      this.score.value += rupee.value;
-      obj.active = false;
-      obj.parent!.removeChild(obj);
+    const rupee = obj.getComponent<RupeeComponent>("Rupee")
+    if( rupee ){
+      this.score.value += rupee.value
+      obj.active = false
+      obj.parent!.removeChild(obj)
     }
-    if (heart) {
-      this.life.value += heart.heal;
-      obj.active = false;
-      obj.parent!.removeChild(obj);
-    }
-    if (chicken) {
-      if (this.isAttacking) {
-        chicken.onAttack();
-      } else {
-        this.life.value -= chicken.attack;
+    else{
+      const heart = obj.getComponent<HeartComponent>("Heart")
+      if( heart ){
+        this.life.value += heart.heal
+        obj.active = false
+        obj.parent!.removeChild(obj)
+      }
+      else{
+        const chicken = obj.getComponent<ChickenComponent>("Chicken")
+        if( chicken ) {
+          if( this.isAttacking ){
+            chicken.onAttack()
+          }
+          else{
+            this.life.value -= chicken.attack
+          }
+        }
       }
     }
   }
