@@ -2,10 +2,11 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "outFile":"./dist/merged.js",
-    "target": "ES2017",
+    "target": "ES2020",
     "module": "amd",
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "moduleResolution": "Node"
   },
   "include": [
     "./src/**/*.ts",

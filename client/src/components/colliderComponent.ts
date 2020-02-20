@@ -1,6 +1,7 @@
 import { Component, IComponent } from "./component";
 import { PositionComponent } from "./positionComponent";
 import { Rectangle } from "./rectangle";
+import * as Quadtree from "quadtree-lib"
 
 export interface ICollisionComponent extends IComponent {
   onCollideWith( other: ColliderComponent ): void;
@@ -63,5 +64,33 @@ export class ColliderComponent extends Component<IColliderComponentDesc> {
       width: this.size.w,
       height: this.size.h,
     });
+  }
+
+  get quadtreeItem() : Quadtree.QuadtreeItem{
+    const position = this.owner.getComponent<PositionComponent>("Position").worldPosition;
+    return{ x: position[ 0 ], y: position[ 1 ], width: this.size.w, height: this.size.h, ref: this }
+  }
+
+  get logCollisionFormatedElement(){
+    const player = this.owner.getComponent('Player');
+    const gem = this.owner.getComponent('Rupee');
+    const heart = this.owner.getComponent('Heart');
+    const chicken = this.owner.getComponent('Chicken');
+    var text = "";
+    if( player ){
+      text += "player "
+    }
+    if( gem ){
+      text += "gem "
+    }
+    if( heart ){
+      text += "heart "
+    }
+    if( chicken ){
+      text += "chicken "
+    }
+    const position = this.owner.getComponent<PositionComponent>("Position").worldPosition;
+    text += position[ 0 ] + "x" + position[ 1 ];
+    return text;
   }
 }
