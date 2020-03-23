@@ -30,8 +30,14 @@ Find the final color in uSampler at the vTextureCoord coordinates, offset from t
 * Improve the rudimentary collision management in the class ColliderComponent and PhysicSystem.
 * Implement the first stages of verification seen in class:
     - [Flags and masks](https://sites.google.com/site/arch1utep/home/course_outline/shifts_flags_masks_in_c).
-    - [Spatial subdivision](https://www.sciencedirect.com/topics/computer-science/spatial-subdivision) [using a quadtree](https://en.wikipedia.org/wiki/Quadtree) (can use an existent implementation). * I'm using (quadtree-lib)[https://www.npmjs.com/package/quadtree-lib]
+    - [Spatial subdivision](https://www.sciencedirect.com/topics/computer-science/spatial-subdivision) [using a quadtree](https://en.wikipedia.org/wiki/Quadtree) (can use an existent implementation). * I'm using [quadtree-lib](https://www.npmjs.com/package/quadtree-lib)
     - [Bounding box](https://computersciencewiki.org/index.php/Bounding_boxes) aligned with axes (implicit, should already be functional).
+
+### Exercise 5 ([Text and internationalisation](https://docs.google.com/document/d/1c7ei02hAOIYCAG_NWnhrelEHmg3_L0_scwo7IrWxqFY))
+* Complete the internationalization functionalities in order to support the substituted fields.
+* Some texts of the web page and the countdown are already translated, using localization files and the class "Localisation".
+* Notice that, when a player wins, the message that appears includes fields that should contain the players' identifiers. You must modify the Location.get function in order to apply the necessary substitutions.
+* IMPORTANT: This is a game engine, so you MUST use an implementation that could be generic. New fields could exist in another context.
 
 ## Install and run
 * Install [NodeJS](https://nodejs.org/en/download/).
