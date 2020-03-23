@@ -2,7 +2,6 @@ import { IEntity } from "../entity";
 import { IDisplayComponent } from "../systems/displaySystem";
 import { Component } from "./component";
 import { SpriteComponent } from "./spriteComponent";
-import { Batching } from "../batching";
 
 // # Classe *LayerComponent*
 // Ce composant représente un ensemble de sprites qui
@@ -17,13 +16,7 @@ export class LayerComponent extends Component<object> implements IDisplayCompone
     if (layerSprites.length === 0) {
       return;
     }
-
-    const spriteSheet = layerSprites[0].spriteSheet
-    const vertexBuffer = layerSprites[0].vertexBuffer
-    const indexBuffer = layerSprites[0].indexBuffer
-    
-    const batch = new Batching(layerSprites, vertexBuffer, indexBuffer)
-    batch.render(spriteSheet)
+    const spriteSheet = layerSprites[0].spriteSheet;
   }
 
   // ## Fonction *listSprites*

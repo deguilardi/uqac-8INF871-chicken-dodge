@@ -1,5 +1,6 @@
 import { IEntity } from "../entity";
 import { EventTrigger } from "../eventTrigger";
+import { Localisation } from "../localisation";
 import { IEntityDesc, Scene } from "../scene";
 import { ILogicComponent } from "../systems/logicSystem";
 import { Timing } from "../timing";
@@ -31,7 +32,10 @@ export class CountdownComponent extends Component<ICountdownComponentDesc> imple
   // Cette méthode est appelée pour configurer le composant avant
   // que tous les composants d'un objet aient été créés.
   public create(descr: ICountdownComponentDesc) {
-    this.sprites = descr.sprites;
+    this.sprites = [];
+    for (const s of descr.sprites) {
+      this.sprites.push(Localisation.get(s));
+    }
     this.delay = descr.delay;
     this.spriteTemplate = descr.spriteTemplate;
   }

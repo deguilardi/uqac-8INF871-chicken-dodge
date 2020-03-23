@@ -1,54 +1,50 @@
 import { ColliderComponent } from "../components/colliderComponent";
 import { Scene } from "../scene";
 import { ISystem } from "./system";
-import * as Quadtree from "quadtree-lib"
-// import * as Quadtree from "../../node_modules/quadtree-lib/typings/quadtree"
 
 // # Classe *PhysicSystem*
 // Représente le système permettant de détecter les collisions
 export class PhysicSystem implements ISystem {
-
-  // This method is called each cycle of the game loop
+  // Méthode *iterate*
+  // Appelée à chaque tour de la boucle de jeu
   public iterate(dT: number) {
-    
-    // init quadtree
-    const canvas = document.getElementById( 'canvas' );
-    const tree = new Quadtree<Quadtree.QuadtreeItem>({
-      width: canvas!.clientWidth,
-      height: canvas!.clientHeight
-    })
+    const colliders: ColliderComponent[] = [];
 
-    // retrieve every single collider component on screen
-    // and add colliders to the quadtree
-    for( const e of Scene.current.entities() ){
-      for( const comp of e.components ){
-        if( comp instanceof ColliderComponent && comp.enabled && comp.owner.active ){
-          tree.push( comp.quadtreeItem )
+    for (const e of Scene.current.entities()) {
+      for (const comp of e.components) {
+        if (comp instanceof ColliderComponent && comp.enabled) {
+          colliders.push(comp);
         }
       }
     }
 
-    // detect collisions
-    const self = this
-    tree.each( function( c1: Quadtree.QuadtreeItem ){
-      const cn = tree.colliding( c1 )
-      for( const c2 of cn ){
-        self.collide( c1.ref, c2.ref );
-      }
-    });
-  }
+    const collisions: Array<[ColliderComponent, ColliderComponent]> = [];
 
-  private collide( element1: ColliderComponent, element2: ColliderComponent ){
-    if( element1.canCollideWith( element2) ){
-      if( element1.handler ){
-        element1.handler.onCollideWith( element2 )
+    for (let i = 0; i < colliders.length; i++) {
+      const c1 = colliders[i];
+      if (!c1.enabled || !c1.owner.active) {
+        continue;
       }
-      if( element2.handler ){
-        element2.handler.onCollideWith( element1 )
+
+      for (let j = i + 1; j < colliders.length; j++) {
+        const c2 = colliders[j];
+        if (!c2.enabled || !c2.owner.active) {
+          continue;
+        }
+
+        if (c1.area.intersectsWith(c2.area)) {
+          collisions.push([c1, c2]);
+        }
       }
     }
 
-    // log collision
-    // console.log( element1.logCollisionFormatedElement + " with " + element2.logCollisionFormatedElement )
+    for (const [c1, c2] of collisions) {
+      if (c1.handler) {
+        c1.handler.onCollision(c2);
+      }
+      if (c2.handler) {
+        c2.handler.onCollision(c1);
+      }
+    }
   }
 }

@@ -4,6 +4,8 @@
       "equipe.txt",
       "layers/background.txt",
       "layers/playground.txt",
+      "locales/en.json",
+      "locales/fr.json",
       "scenes/play.json",
       "spritesheets/zeldaSprites.json"
     ],
@@ -19,9 +21,12 @@
     ]
   },
   "images": [
-    "sprites/countdown_step1.png",
-    "sprites/countdown_step2.png",
-    "sprites/countdown_step3.png",
+    "sprites/countdown_step1_en.png",
+    "sprites/countdown_step1_fr.png",
+    "sprites/countdown_step2_en.png",
+    "sprites/countdown_step2_fr.png",
+    "sprites/countdown_step3_en.png",
+    "sprites/countdown_step3_fr.png",
     "sprites/deformation.png",
     "sprites/intensity.png",
     "spritesheets/zeldaSprites.png"

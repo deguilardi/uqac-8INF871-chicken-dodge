@@ -185,6 +185,11 @@
                 </a>
               
                 
+                <a class="source" href="../localisation.html">
+                      src/localisation.ts
+                </a>
+              
+                
                 <a class="source" href="../main.html">
                       src/main.ts
                 </a>
@@ -249,6 +254,7 @@
             
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">import</span> { IEntity } <span class="hljs-keyword">from</span> <span class="hljs-string">"../entity"</span>;
 <span class="hljs-keyword">import</span> { EventTrigger } <span class="hljs-keyword">from</span> <span class="hljs-string">"../eventTrigger"</span>;
+<span class="hljs-keyword">import</span> { Localisation } <span class="hljs-keyword">from</span> <span class="hljs-string">"../localisation"</span>;
 <span class="hljs-keyword">import</span> { IEntityDesc, Scene } <span class="hljs-keyword">from</span> <span class="hljs-string">"../scene"</span>;
 <span class="hljs-keyword">import</span> { ILogicComponent } <span class="hljs-keyword">from</span> <span class="hljs-string">"../systems/logicSystem"</span>;
 <span class="hljs-keyword">import</span> { Timing } <span class="hljs-keyword">from</span> <span class="hljs-string">"../timing"</span>;
@@ -304,7 +310,10 @@ que tous les composants d’un objet aient été créés.</p>
             </div>
             
             <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">public</span> create(descr: ICountdownComponentDesc) {
-    <span class="hljs-keyword">this</span>.sprites = descr.sprites;
+    <span class="hljs-keyword">this</span>.sprites = [];
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> s of descr.sprites) {
+      <span class="hljs-keyword">this</span>.sprites.push(Localisation.get(s));
+    }
     <span class="hljs-keyword">this</span>.delay = descr.delay;
     <span class="hljs-keyword">this</span>.spriteTemplate = descr.spriteTemplate;
   }</pre></div></div>
