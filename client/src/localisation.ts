@@ -76,10 +76,18 @@ export class Localisation {
       return key;
     }
 
-    // ***TODO***: Implémenter la substitution de clés
-    console.log("queryContext: ", queryContext);
+    // replace keys by values in the context
+    var i18nValue = localeStrings[key]
+    let regex = /{[A-Z]+}/mgi
+    let matches = i18nValue.match( regex )
+    if( matches != null && matches.length > 0 ){
+      for( let index in matches ){
+        let contextKey = matches[ index ].substr( 1 ).substr( 0, matches[ index ].length - 2)
+        i18nValue = i18nValue.replace( matches[ index ], queryContext[ contextKey ] )
+      }
+    }
 
-    return localeStrings[key];
+    return i18nValue
   }
 
   // ## Méthode statique *setContext*
